@@ -5,6 +5,7 @@ $secondary: #e74c3c;
 $highlight: #f39c12;
 $dark: #333333;
 $light: #f5f5f5;
+$body-bg: #cdcbd1;
 
 $custom-colors: (
   'primary': $primary,
@@ -13,7 +14,8 @@ $custom-colors: (
   'secondary': $secondary,
   'highlight': $highlight,
   'dark': $dark,
-  'light': $light
+  'light': $light,
+  'body-bg': $body-bg,
 );
 
 

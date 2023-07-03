@@ -1,17 +1,31 @@
-<header class="text-bg-primary-dark border-bottom shadow">
+<header class="text-bg-light border-bottom border-dark border-opacity-25 shadow-sm">
   <nav class="navbar">
-    <div class="container d-flex justify-content-start">
-      <button type="button"
-      style="place-items: center; width: 2rem; height: 2rem;"
-      class="btn btn-outline-light border-0 me-2 p-0 d-grid rounded-pill"
-      [class.d-none]="isRootRoute()"
-      (click)="navigateBack()">
-        <svg viewBox="0 0 500 500" class="svg-icon">
-          <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-        </svg>
-      </button>
-      <h1 class="fs-5 my-2">{{getRouteTitle()}}</h1>
+    <div class="container d-block">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="small fw-semibold text-primary">
+          TaskMaster
+        </h1>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-start align-items-center">
+          <button type="button"
+          style="place-items: center; width: 2rem; height: 2rem;"
+          class="btn text-bg-light border-0 p-0 d-grid rounded-pill"
+          [class.d-none]="isRootRoute()"
+          (click)="navigateBack()">
+            <svg viewBox="0 0 500 500" class="svg-icon">
+              <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+            </svg>
+          </button>
+          <h1 class="fs-4 my-2 fw-bold">{{getRouteTitle()}}</h1>
+        </div>
+        <div class="btns">
+          <button type="button" class="btn btn-default border-0">
+            NOVO
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
