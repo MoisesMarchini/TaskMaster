@@ -1,0 +1,12 @@
+.navbar {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.calendar-date {
+  --_sm-w: calc((100% / 7) - .25rem);
+  width: clamp(2rem, var(--_sm-w), 5rem);
+  .weekday{
+    font-size: .75rem;
+  }
+}

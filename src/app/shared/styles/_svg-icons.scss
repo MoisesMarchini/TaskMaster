@@ -1,0 +1,6 @@
+svg.svg-icon{
+  height: clamp(1rem, 50%, 2rem);
+  path {
+    fill: currentColor;
+  }
+}
