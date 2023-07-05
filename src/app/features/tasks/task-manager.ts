@@ -1,11 +1,21 @@
-import { Task } from './models/task';
-export const TaskManager = {
-  taskList: [] as Task[],
+import { Task } from "./models/task";
 
-  uncompletedTasks: (tasks?: Task[]) => {
-    return (tasks?? TaskManager.taskList).filter(p=> !p.completed && !p.disabled)
+const key = 'tasks'
+
+const TASKS = () => {
+  const storageValues = localStorage.getItem(key);
+  if (!storageValues)
+    return [];
+
+
+  return JSON.parse(storageValues) as Task[];
+}
+
+export const TaskManager = {
+  get tasks() {
+    return TASKS();
   },
-  completedTasks: (tasks?: Task[]) => {
-    return (tasks?? TaskManager.taskList).filter(p=> p.completed === true && !p.disabled)
+  set tasks(value: Task[]) {
+    localStorage.setItem(key, JSON.stringify(value));
   },
 }

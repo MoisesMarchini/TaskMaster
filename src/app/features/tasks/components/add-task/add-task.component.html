@@ -1,11 +1,21 @@
 <div
 style="max-width: 500px;"
-class="card mx-auto">
-  <div class="w-100">
-    <span class="grabber my-2 py-1 mx-auto"></span>
-  </div>
-  <form action="" class="w-100 p-2 pt-0">
-    <input class="form-control mb-2" type="text" placeholder="Título da tarefa" name="title">
-    <button type="submit" class="btn btn-primary fw-semibold">Salvar</button>
+class="mx-auto ">
+  <form #newTaskForm="ngForm" (ngSubmit)="onSubmit(newTaskForm)" class="w-100" >
+    <div
+    class="card p-2 shadow-sm">
+      <div class="form-group">
+        <label for="task-title" class="lh-1 ps-1 form-label">Título da tarefa</label>
+        <input
+        id="task-title"
+        class="form-control"
+        placeholder="Ex.: Ir ao mercado"
+        type="text"
+        name="title"
+        [(ngModel)]="task.title"
+        >
+      </div>
+      <button type="submit" class="btn btn-primary fw-semibold mt-2 px-4 me-auto">Salvar</button>
+    </div>
   </form>
 </div>

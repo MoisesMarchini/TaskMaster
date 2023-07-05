@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskManager } from 'src/app/features/tasks/task-manager';
 import { RouteHistoryService } from '../../services/route-history.service';
 
 @Component({
@@ -17,5 +16,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  setDarkMode(){
+    const htmlClassList = document.documentElement.classList;
+
+    if (htmlClassList.contains('dark-mode'))
+      htmlClassList.remove('dark-mode');
+    else
+      htmlClassList.add('dark-mode');
   }
 }

@@ -1,50 +1,58 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
+import { BoardManager } from '../../boards/board-manager';
+import { BoardsService } from '../../boards/services/boards.service';
 import { TaskManager } from '../task-manager';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TaskService {
 
   constructor() { }
 
-  newTask(task: Task) {
-    const genericId = (TaskManager.taskList.length + 1).toString();
+  newTask(task: Task, boardId: string) {
+    const taskList = TaskManager.tasks;
+    const genericId = (TaskManager.tasks.length + 1).toString();
+
     const _task: Task = {
       id: genericId,
+      index: TaskManager.tasks.length,
       title: task.title,
+      boardId: boardId,
+      comments: task.comments,
       createdAt: new Date
     }
 
-    TaskManager.taskList.push(task);
+    taskList.push(_task);
+    TaskManager.tasks = taskList;
     return _task;
   }
 
   disableTask(task: Task) {
     task.disabled = true;
 
-    this.updateTask(task);
-    return task;
+    return this.updateTask(task);
   }
 
-  taskCompleted(task: Task) {
-    task.completed = true;
-    task.finishedAt = new Date();
+  moveTask(task: Task, boardId: string) {
+    const board = BoardManager.boards.find(p => p.id === task.boardId);
+    if (!board)
+      return;
 
-    this.updateTask(task);
-    return task;
+    task.boardId = boardId;
+
+    return this.updateTask(task);
   }
 
-  taskUncompleted(task: Task) {
-    task.completed = false;
-    task.finishedAt = undefined;
+  updateTask(task: Task) {
+    const taskList = TaskManager.tasks;
+    const _task = taskList.find(p => p.id === task.id);
+    if (!_task)
+      return;
 
-    this.updateTask(task);
-    return task;
-  }
-
-  private updateTask(task: Task) {
-    const storageTask = TaskManager.taskList.find(p => p.id === task.id);
-    if (storageTask)
-      Object.assign(storageTask, task);
+    Object.assign(_task, task);
+    TaskManager.tasks = taskList;
+    return _task;
   }
 }

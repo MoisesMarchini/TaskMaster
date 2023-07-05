@@ -1,12 +1,18 @@
+header{
+  background-color: var(--bs-container-bg);
+  color: var(--bs-container-color);
+}
 .navbar {
   overflow-x: auto;
   overflow-y: hidden;
 }
-
-.calendar-date {
-  --_sm-w: calc((100% / 7) - .25rem);
-  width: clamp(2rem, var(--_sm-w), 5rem);
-  .weekday{
-    font-size: .75rem;
-  }
+.navbar::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background-color: red;
+  z-index: -1;
+  top: 20px;
 }

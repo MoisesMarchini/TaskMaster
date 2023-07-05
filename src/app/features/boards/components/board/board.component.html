@@ -1,0 +1,27 @@
+<div
+cdkDropListGroup
+class="d-flex flex-column gap-3 flex-grow-1 w-100 mb-5">
+  <ng-container *ngFor="let board of boards; let i = index">
+    <div
+    [style]="'--_bg-color: var(--bs-'+board.color+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); '"
+    cdkDropList
+    [cdkDropListData]="board.tasks"
+    (cdkDropListDropped)="drop($event)"
+    class="board-column flex-grow-1 pb-2 mb-2 border-dark border-opacity-25 border-bottom drag-list">
+      <div class="d-flex w-100 align-items-center justify-content-between board-header ps-2 pe-2">
+        <h6
+        class="m-0 fw-bold bg-opacity-50 board-title">
+          <span
+          class="rounded-circle circle-sign"></span>
+          {{board.name}}
+        </h6>
+      </div>
+      <ng-container *ngFor="let task of board.tasks">
+        <app-task-card [task]="task" (onChangesEvent)="changeTaskBoard()"></app-task-card>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+<button type="button" class="btn btn-primary rounded-circle shadow" id="btn-new-task" (click)="newTask()">
+  +
+</button>

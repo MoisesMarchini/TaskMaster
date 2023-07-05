@@ -1,16 +1,19 @@
-<header class="text-bg-light border-bottom border-dark border-opacity-25 shadow-sm">
+<header class="border-bottom border-dark border-opacity-25 shadow-sm">
   <nav class="navbar">
     <div class="container d-block">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1 class="small fw-semibold text-primary">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1 class="small fw-semibold text-primary lh-1">
           TaskMaster
         </h1>
+        <button type="button" class="btn btn-default p-0 m-0 align-self-start lh-1" style="font-size: .875rem;" (click)="setDarkMode()">
+          DarkMode
+        </button>
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-start align-items-center">
           <button type="button"
           style="place-items: center; width: 2rem; height: 2rem;"
-          class="btn text-bg-light border-0 p-0 d-grid rounded-pill"
+          class="btn btn-default border-0 p-0 d-grid rounded-pill"
           [class.d-none]="isRootRoute()"
           (click)="navigateBack()">
             <svg viewBox="0 0 500 500" class="svg-icon">
@@ -20,11 +23,11 @@
           </button>
           <h1 class="fs-4 my-2 fw-bold">{{getRouteTitle()}}</h1>
         </div>
-        <div class="btns">
+        <!-- <div class="btns">
           <button type="button" class="btn btn-default border-0">
             NOVO
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </nav>

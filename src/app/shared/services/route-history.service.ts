@@ -23,7 +23,6 @@ export class RouteHistoryService {
     const previousRoute = this.routeHistory.pop();
 
     this.router.navigateByUrl(previousRoute ?? '/');
-    console.log(previousRoute, this.routeHistory)
   }
 
   getRouteTitle(): string {

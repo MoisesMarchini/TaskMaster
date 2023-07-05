@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TasksModule } from './features/tasks/tasks.module';
 import { SharedModule } from './shared/shared.module';
+import { BoardsModule } from './features/boards/boards.module';
+import { TasksModule } from './features/tasks/tasks.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     TasksModule,
+    BoardsModule,
     SharedModule
   ],
   providers: [],

@@ -1,0 +1,45 @@
+.board-column{
+  width: 100%;
+  flex-basis: 0;
+  .board-header{
+    position: sticky;
+    top: 0;
+    padding-bottom: 4px;
+    .board-title {
+      display: flex;
+      padding: 0.25rem 0.75rem;
+      align-items: center;
+      gap: .5rem;
+      span.circle-sign{
+        display: inline-block;
+        background-color: rgba(var(--_bg-color), 1);
+        outline: 2px solid;
+        border: 3px solid var(--bs-container-bg);
+        width: 1rem;
+        height: 1rem;
+        color: var(--_text-color);
+      }
+    }
+    .btn-board-collapse{
+      display: grid;
+      place-content: center;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#btn-new-task{
+  display: grid;
+  place-content: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem;
+  z-index: 1000;
+  font-size: 3rem;
+}

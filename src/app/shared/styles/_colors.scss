@@ -1,11 +1,21 @@
 $primary: #db7f34;
 $primary-light: #d8ae77;
-$primary-dark: #aa4526;
+$primary-dark: #923b21;
 $secondary: #e74c3c;
-$highlight: #f39c12;
+$highlight: #2f97d4;
+$highlight-light: #7effe3;
+$highlight-dark: #075481;
+$success: #34db3c;
+$success-light: #80ffd9;
+$success-dark: #0c8046;
 $dark: #333333;
-$light: #f5f5f5;
-$body-bg: #cdcbd1;
+$light: #ddd;
+$white: #fff;
+$black: #222222;
+$container-bg: $white;
+$container-color: $black;
+$body-bg: $light;
+$body-color: $black;
 
 $custom-colors: (
   'primary': $primary,
@@ -13,9 +23,18 @@ $custom-colors: (
   'primary-dark': $primary-dark,
   'secondary': $secondary,
   'highlight': $highlight,
+  'highlight-light': $highlight-light,
+  'highlight-dark': $highlight-dark,
+  'success': $success,
+  'success-light': $success-light,
+  'success-dark': $success-dark,
   'dark': $dark,
   'light': $light,
+  'white': $white,
+  'black': $black,
   'body-bg': $body-bg,
+  'container-bg': $container-bg,
+  'container-color': $container-color,
 );
 
 
@@ -23,7 +42,7 @@ $theme-colors: map-merge-multiple($theme-colors, $custom-colors);
 
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 
-$utilities-bg: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-bg: map-merge-multiple($utilities-colors, $theme-colors-rgb);
 
 $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");
 
