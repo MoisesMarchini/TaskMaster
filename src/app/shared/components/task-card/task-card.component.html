@@ -1,14 +1,14 @@
-<div cdkDrag class="card card-task rounded-0 shadow-sm border-0 border-bottom drag-item p-2 ps-3 shadow-none flex-row">
+<div cdkDrag [class.border-bottom]="!isLast" class="card card-task rounded-0 shadow-sm border-0 drag-item p-2 ps-3 shadow-none flex-row">
   <div class="card-content flex-grow-1 d-flex flex-column justify-content-center">
     <p class="m-0 fw-500 fs-regular">
       {{task?.title}}
     </p>
   </div>
   <div class="btns align-self-start d-flex gap-0">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="btn text-dark border-0 btn-opt p-0 ">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="container-bg border-0 btn-opt p-0 ">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="px-2">
+    <mat-menu #menu="matMenu" class="px-2 container-bg">
       <button mat-menu-item class="border-bottom" (click)="editTask()">
         <mat-icon>edit</mat-icon>
         <span>Editar</span>
@@ -22,7 +22,7 @@
         <span>Mover para</span>
       </button>
     </mat-menu>
-    <mat-menu #boardsMenu="matMenu" class="px-2">
+    <mat-menu #boardsMenu="matMenu" class="px-2 container-bg">
       <button mat-menu-item *ngFor="let board of boards; let i = index" [class.border-bottom]="i !== boards.length -1" (click)="setBoard(board.id)">
         <span>{{board.name}}</span>
       </button>

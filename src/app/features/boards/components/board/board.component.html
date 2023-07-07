@@ -4,7 +4,7 @@ class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
   <ng-container *ngFor="let board of boards; let i = index">
     <div
     [style]="'--_bg-color: var(--bs-'+board.color+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); height: fit-content;'"
-    class="board-column card shadow-sm rounded flex-grow-1 p-2">
+    class="board-column card shadow-none border-0 rounded flex-grow-1 p-2">
       <h6
       class="m-0 fw-500 fs-2 bg-opacity-50 board-header d-flex align-items-center p-2 mb-1">
         <span
@@ -19,12 +19,12 @@ class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
       style="border-radius: 4px;"
       class="drag-list overflow-hidden d-inline-block mt-0">
         <ng-container *ngFor="let task of board.tasks; let i = index">
-          <app-task-card [task]="task" (onChangesEvent)="changeTaskBoard()"></app-task-card>
+          <app-task-card [task]="task" [isLast]="i === board.tasks.length -1" (onChangesEvent)="changeTaskBoard()"></app-task-card>
         </ng-container>
       </div>
     </div>
   </ng-container>
 </div>
-<button type="button" class="btn btn-primary text-white rounded-circle shadow" id="btn-new-task" (click)="openNewTask()">
+<button type="button" class="btn btn-primary text-white rounded-circle shadow m-3 m-lg-5" id="btn-new-task" (click)="openNewTask()">
   <mat-icon class="h-100 w-100">add</mat-icon>
 </button>

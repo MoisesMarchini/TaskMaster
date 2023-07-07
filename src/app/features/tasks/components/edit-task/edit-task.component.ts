@@ -4,6 +4,7 @@ import { TaskManager } from '../../task-manager';
 import { NgForm } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { BoardsService } from '../../../boards/services/boards.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -22,8 +23,9 @@ export class EditTaskComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
+    private boardsService: BoardsService,
     private _bottomSheetRef: MatBottomSheetRef<EditTaskComponent>
-  ) { 
+  ) {
   }
 
   ngOnInit() {
@@ -35,8 +37,9 @@ export class EditTaskComponent implements OnInit {
   onSubmit(form: NgForm) {
     if(form.invalid)
       return;
-    
-    this.taskService.editTask(this.task);
+
+    this.taskService.updateTask(this.task);
+    this.boardsService.updateBoards();
     this._bottomSheetRef.dismiss();
   }
 

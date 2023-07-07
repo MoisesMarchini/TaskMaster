@@ -25,7 +25,6 @@ export class TaskService {
 
     taskList.push(_task);
     TaskManager.tasks = taskList;
-    window.location.reload();
     return _task;
   }
 
@@ -33,21 +32,6 @@ export class TaskService {
     task.disabled = true;
 
     return this.updateTask(task);
-  }
-
-  moveTask(task: Task, boardId: string) {
-    const board = BoardManager.boards.find(p => p.id === task.boardId);
-    if (!board)
-      return;
-
-    task.boardId = boardId;
-
-    return this.updateTask(task);
-  }
-
-  editTask(task: Task) {
-    this.updateTask(task);
-    window.location.reload();
   }
 
   updateTask(task: Task) {
@@ -67,7 +51,7 @@ export class TaskService {
       const _task = taskList.find(p => p.id === task.id);
       if (!_task)
         return;
-  
+
       Object.assign(_task, task);
     })
     TaskManager.tasks = taskList;

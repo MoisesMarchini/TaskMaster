@@ -1,6 +1,10 @@
 :root.dark-mode{
   --bs-container-bg: var(--bs-dark);
+  --bs-container-bg-rgb: var(--bs-dark-rgb);
   --bs-container-color: var(--bs-white);
+  --bs-container-color-rgb: var(--bs-white-rgb);
   --bs-body-bg: var(--bs-black);
+  --bs-body-bg-rgb: var(--bs-black-rgb);
   --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: var(--bs-white-rgb);
 }

@@ -1,0 +1,7 @@
+.rounded {
+  border-radius: 4px !important;
+}
+
+:root {
+  --bs-border-color: rgba(var(--bs-body-bg-rgb), 1) !important;
+}

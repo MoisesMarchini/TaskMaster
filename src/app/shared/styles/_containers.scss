@@ -1,0 +1,20 @@
+.container-bg, .mat-bottom-sheet-container {
+  background-color: var(--bs-container-bg);
+  color: var(--bs-container-color);
+}
+
+.container-bg * {
+  color: inherit !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled){
+  background-color: transparent;
+}
+
+// .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+//   color: rgba(var(--bs-container-color-rgb), .6)
+// }
+
+// .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
+//   color: var(--mdc-theme-error, #f44336);
+// }

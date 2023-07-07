@@ -3,6 +3,7 @@ import { Task } from '../../../features/tasks/models/task';
 import { BoardManager } from 'src/app/features/boards/board-manager';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { EditTaskComponent } from 'src/app/features/tasks/components/edit-task/edit-task.component';
+import { TaskService } from '../../../features/tasks/services/task.service';
 
 @Component({
   selector: 'app-task-card',
@@ -11,12 +12,14 @@ import { EditTaskComponent } from 'src/app/features/tasks/components/edit-task/e
 })
 export class TaskCardComponent implements OnInit {
   @Input() task?: Task;
+  @Input() isLast: boolean = false;
   @Output() onChangesEvent = new EventEmitter();
 
   boards = BoardManager.boards.filter(board => board.id !== this.task?.boardId);
 
   constructor(
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private taskService: TaskService
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,7 @@ export class TaskCardComponent implements OnInit {
 
     this.task.index = -1;
     this.task.boardId = boardId;
+    this.taskService.updateTask(this.task)
     this.onChangesEvent.emit();
   }
 
@@ -40,6 +44,7 @@ export class TaskCardComponent implements OnInit {
       return;
 
     this.task.disabled = true;
+    this.taskService.updateTask(this.task)
     this.onChangesEvent.emit();
   }
 

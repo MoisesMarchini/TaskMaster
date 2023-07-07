@@ -15,7 +15,12 @@ export const TaskManager = {
   get tasks() {
     return TASKS();
   },
+
   set tasks(value: Task[]) {
     localStorage.setItem(key, JSON.stringify(value));
   },
+
+  clearData() {
+    this.tasks = [];
+  }
 }

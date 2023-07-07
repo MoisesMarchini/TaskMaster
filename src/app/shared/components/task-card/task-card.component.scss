@@ -16,7 +16,7 @@
   background-color: rgb(var(--_bg-color));
 }
 
-.btns .btn{
+.btns > button{
   display: grid;
   place-content: center;
   gap: 1px;

@@ -47,3 +47,7 @@ $utilities-bg: map-merge-multiple($utilities-colors, $theme-colors-rgb);
 $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+:root {
+  --mdc-theme-primary: var(--bs-primary);
+}

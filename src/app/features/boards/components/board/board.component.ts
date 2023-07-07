@@ -8,6 +8,7 @@ import { TaskService } from 'src/app/features/tasks/services/task.service';
 import { Task } from 'src/app/features/tasks/models/task';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add-task.component';
+import { BoardsService } from '../../services/boards.service';
 
 @Component({
   selector: 'app-board',
@@ -15,20 +16,17 @@ import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  boards: BoardViewModel[] = [];
+  get boards() {
+    return this.boardsService.getBoards();
+  }
 
   constructor(
-    private router: Router,
-    private taskService: TaskService,
+    private boardsService: BoardsService,
     private _bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit() {
     this.updateBoards();
-  }
-
-  newTask() {
-    this.router.navigateByUrl('/add-task');
   }
 
   drop(event: CdkDragDrop<any[]>) {
@@ -46,48 +44,19 @@ export class BoardComponent implements OnInit {
   }
 
   changeTaskBoard() {
-    this.updateBoardsAfterChange();
-    this.updateBoardTasks();
+    this.updateBoards();
   }
 
   updateBoardsAfterChange() {
-    const tasks = this.boards.flatMap(board => board.tasks);
-    this.boards = this.boards.map(b => {
-      const _board: BoardViewModel = {
-        id: b.id,
-        name: b.name,
-        tasks: tasks.filter(p => p.boardId === b.id).sort((a, b) => a.index - b.index),
-        color: b.color,
-        collapsed: false
-      }
-      return _board;
-    });
+    this.boardsService.updateBoards('boardService');
   }
 
   updateBoards() {
-    this.boards = BoardManager.boards.filter(p => !p.disabled).map(b => {
-      const _board: BoardViewModel = {
-        id: b.id,
-        name: b.name,
-        tasks: TaskManager.tasks.filter(p => p.boardId === b.id && !p.disabled).sort((a, b) => a.index - b.index),
-        color: b.color,
-        collapsed: false
-      }
-      return _board;
-    });
+    this.boardsService.updateBoards('boardManager');
   }
 
   updateBoardTasks() {
-    const tasks = this.boards.flatMap(p => {
-      const _tasks = p.tasks as Task[];
-      return _tasks.map((task, index) => {
-        task.boardId = p.id!;
-        task.index = index;
-        return task;
-      })
-    });
-    this.taskService.updateTasks(tasks);
-    this.updateBoards();
+    this.boardsService.updateBoardsTask();
   }
 
   openNewTask(): void {
