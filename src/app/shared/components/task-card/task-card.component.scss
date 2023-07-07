@@ -1,3 +1,8 @@
+.card-task{
+  min-height: 64px;
+  cursor: grab;
+}
+
 .card-task::before{
   content: '';
   position: absolute;
@@ -15,12 +20,6 @@
   display: grid;
   place-content: center;
   gap: 1px;
-  width: 2rem;
-  height: 2rem;
-  span.circle{
-    aspect-ratio: 1;
-    width: .25rem;
-    height: .25rem;
-    background-color: var(--bs-container-color);
-  }
+  width: 3rem;
+  height: 3rem;
 }

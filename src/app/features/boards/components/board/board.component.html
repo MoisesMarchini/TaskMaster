@@ -1,27 +1,30 @@
 <div
 cdkDropListGroup
-class="d-flex flex-column gap-3 flex-grow-1 w-100 mb-5">
+class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
   <ng-container *ngFor="let board of boards; let i = index">
     <div
-    [style]="'--_bg-color: var(--bs-'+board.color+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); '"
-    cdkDropList
-    [cdkDropListData]="board.tasks"
-    (cdkDropListDropped)="drop($event)"
-    class="board-column flex-grow-1 pb-2 mb-2 border-dark border-opacity-25 border-bottom drag-list">
-      <div class="d-flex w-100 align-items-center justify-content-between board-header ps-2 pe-2">
-        <h6
-        class="m-0 fw-bold bg-opacity-50 board-title">
-          <span
-          class="rounded-circle circle-sign"></span>
-          {{board.name}}
-        </h6>
+    [style]="'--_bg-color: var(--bs-'+board.color+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); height: fit-content;'"
+    class="board-column card shadow-sm rounded flex-grow-1 p-2">
+      <h6
+      class="m-0 fw-500 fs-2 bg-opacity-50 board-header d-flex align-items-center p-2 mb-1">
+        <span
+        class="rounded-circle circle-sign me-2"></span>
+        {{board.name}}
+      </h6>
+      <div
+      cdkDropList
+      [cdkDropListData]="board.tasks"
+      (cdkDropListDropped)="drop($event)"
+      [class.border]="board.tasks.length > 0"
+      style="border-radius: 4px;"
+      class="drag-list overflow-hidden d-inline-block mt-0">
+        <ng-container *ngFor="let task of board.tasks; let i = index">
+          <app-task-card [task]="task" (onChangesEvent)="changeTaskBoard()"></app-task-card>
+        </ng-container>
       </div>
-      <ng-container *ngFor="let task of board.tasks">
-        <app-task-card [task]="task" (onChangesEvent)="changeTaskBoard()"></app-task-card>
-      </ng-container>
     </div>
   </ng-container>
 </div>
-<button type="button" class="btn btn-primary rounded-circle shadow" id="btn-new-task" (click)="newTask()">
-  +
+<button type="button" class="btn btn-primary text-white rounded-circle shadow" id="btn-new-task" (click)="openNewTask()">
+  <mat-icon class="h-100 w-100">add</mat-icon>
 </button>

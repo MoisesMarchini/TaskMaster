@@ -4,6 +4,7 @@ import { BoardManager } from 'src/app/features/boards/board-manager';
 import { TaskService } from '../../services/task.service';
 import { RouteHistoryService } from 'src/app/shared/services/route-history.service';
 import { NgForm } from '@angular/forms';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-add-task',
@@ -20,7 +21,7 @@ export class AddTaskComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private routeHistoryService: RouteHistoryService,
+    private _bottomSheetRef: MatBottomSheetRef<AddTaskComponent>
   ) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class AddTaskComponent implements OnInit {
       return;
 
     this.taskService.newTask(this.task, BoardManager.boards[0].id ?? 'board-001');
-    this.routeHistoryService.navigateBack();
+    this._bottomSheetRef.dismiss();
   }
 
 }

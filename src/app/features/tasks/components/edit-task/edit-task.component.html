@@ -1,3 +1,22 @@
-<p>
-  edit-task works!
-</p>
+<div
+style="max-width: 500px;"
+class="mx-auto ">
+  <form #editTaskForm="ngForm" (ngSubmit)="onSubmit(editTaskForm)" class="w-100" >
+    <div
+    class="card p-2 border-0 rounded">
+    <h5 class="fs-2 fw-500">Editar tarefa</h5>
+    <mat-form-field class="mb-3">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
+      <mat-error *ngIf="editTaskForm.invalid && !task.title">
+        Deve ser preenchido
+      </mat-error>
+    </mat-form-field>
+      <button
+      type="submit"
+      [class.disabled]="editTaskForm.invalid"
+      [class.opacity-50]="editTaskForm.invalid"
+      class="btn btn-primary text-white fw-500 mt-0 px-4 me-auto">Salvar</button>
+    </div>
+  </form>
+</div>

@@ -5,12 +5,15 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   declarations: [
     HeaderComponent,

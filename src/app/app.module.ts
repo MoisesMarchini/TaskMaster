@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BoardsModule } from './features/boards/boards.module';
 import { TasksModule } from './features/tasks/tasks.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TasksModule } from './features/tasks/tasks.module';
     AppRoutingModule,
     TasksModule,
     BoardsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

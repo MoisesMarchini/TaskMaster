@@ -3,19 +3,20 @@ style="max-width: 500px;"
 class="mx-auto ">
   <form #newTaskForm="ngForm" (ngSubmit)="onSubmit(newTaskForm)" class="w-100" >
     <div
-    class="card p-2 shadow-sm">
-      <div class="form-group">
-        <label for="task-title" class="lh-1 ps-1 form-label">Título da tarefa</label>
-        <input
-        id="task-title"
-        class="form-control"
-        placeholder="Ex.: Ir ao mercado"
-        type="text"
-        name="title"
-        [(ngModel)]="task.title"
-        >
-      </div>
-      <button type="submit" class="btn btn-primary fw-semibold mt-2 px-4 me-auto">Salvar</button>
+    class="card p-2 border-0">
+    <h5 class="fs-2 fw-500">Nova tarefa</h5>
+    <mat-form-field class="mb-3">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
+      <mat-error *ngIf="newTaskForm.invalid && !task.title">
+        Deve ser preenchido
+      </mat-error>
+    </mat-form-field>
+      <button
+      type="submit"
+      [class.disabled]="newTaskForm.invalid"
+      [class.opacity-50]="newTaskForm.invalid"
+      class="btn btn-primary text-white fw-500 mt-0 px-4 me-auto">Salvar</button>
     </div>
   </form>
 </div>

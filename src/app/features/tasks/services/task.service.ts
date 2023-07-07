@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { BoardManager } from '../../boards/board-manager';
-import { BoardsService } from '../../boards/services/boards.service';
 import { TaskManager } from '../task-manager';
 
 @Injectable({
@@ -26,6 +25,7 @@ export class TaskService {
 
     taskList.push(_task);
     TaskManager.tasks = taskList;
+    window.location.reload();
     return _task;
   }
 
@@ -45,6 +45,11 @@ export class TaskService {
     return this.updateTask(task);
   }
 
+  editTask(task: Task) {
+    this.updateTask(task);
+    window.location.reload();
+  }
+
   updateTask(task: Task) {
     const taskList = TaskManager.tasks;
     const _task = taskList.find(p => p.id === task.id);
@@ -54,5 +59,18 @@ export class TaskService {
     Object.assign(_task, task);
     TaskManager.tasks = taskList;
     return _task;
+  }
+
+  updateTasks(tasks: Task[]) {
+    const taskList = TaskManager.tasks;
+    tasks.forEach(task => {
+      const _task = taskList.find(p => p.id === task.id);
+      if (!_task)
+        return;
+  
+      Object.assign(_task, task);
+    })
+    TaskManager.tasks = taskList;
+    return taskList;
   }
 }

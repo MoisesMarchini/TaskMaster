@@ -6,4 +6,7 @@
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
 
-@import './app/shared/styles.scss'
+@import './app/shared/styles.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

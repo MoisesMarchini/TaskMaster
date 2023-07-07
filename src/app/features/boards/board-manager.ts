@@ -1,4 +1,5 @@
 import { TaskManager } from "../tasks/task-manager";
+import { BoardComponent } from "./components/board/board.component";
 import { Board } from "./models/board";
 
 const key = 'boards'
@@ -29,7 +30,6 @@ const BOARDS = () => {
 
   return JSON.parse(storageValues) as Board[];
 }
-
 export const BoardManager = {
   get boards() {
     return BOARDS();
@@ -38,3 +38,4 @@ export const BoardManager = {
     localStorage.setItem(key, JSON.stringify(value));
   },
 }
+

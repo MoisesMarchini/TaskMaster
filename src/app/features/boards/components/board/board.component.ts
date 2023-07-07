@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BoardManager } from '../../board-manager'
 import { Router } from '@angular/router';
 import { TaskManager } from 'src/app/features/tasks/task-manager';
-import { Board, BoardViewModel } from '../../models/board';
+import { BoardViewModel } from '../../models/board';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TaskService } from 'src/app/features/tasks/services/task.service';
 import { Task } from 'src/app/features/tasks/models/task';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add-task.component';
 
 @Component({
   selector: 'app-board',
@@ -17,7 +19,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private _bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit() {
@@ -66,7 +69,7 @@ export class BoardComponent implements OnInit {
       const _board: BoardViewModel = {
         id: b.id,
         name: b.name,
-        tasks: TaskManager.tasks.filter(p => p.boardId === b.id).sort((a, b) => a.index - b.index),
+        tasks: TaskManager.tasks.filter(p => p.boardId === b.id && !p.disabled).sort((a, b) => a.index - b.index),
         color: b.color,
         collapsed: false
       }
@@ -83,7 +86,12 @@ export class BoardComponent implements OnInit {
         return task;
       })
     });
-    tasks.forEach(p => this.taskService.updateTask(p));
+    this.taskService.updateTasks(tasks);
+    this.updateBoards();
+  }
+
+  openNewTask(): void {
+    this._bottomSheet.open(AddTaskComponent);
   }
 
 }
