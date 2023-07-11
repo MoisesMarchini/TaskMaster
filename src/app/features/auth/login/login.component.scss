@@ -1,0 +1,19 @@
+:host{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  text-align: center;
+  isolation: isolate;
+  color: rgba(var(--bs-dark-rgb), .5);
+  position: relative;
+  min-height: 20px;
+  span{
+    line-height: 1;
+    padding: .5rem 1rem;
+  }
+}

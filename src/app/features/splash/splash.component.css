@@ -1,0 +1,49 @@
+:host{
+  --_default-transition: .2s ease-in-out;
+  position: fixed;
+  inset: 0;
+  background-color: var(--bs-body-bg);
+  display: grid;
+  place-items: center;
+}
+
+* {
+  transition: var(--_default-transition);
+}
+
+.container{
+  height: 100%;
+  padding: 5vmin;
+  max-width: 600px;
+}
+
+.indicator{
+  border-radius: 50px;
+  background-color: var(--bs-white);
+  width: .5rem;
+  height: .5rem;
+}
+
+.indicator.active{
+  width: 2rem;
+  background-color: var(--bs-primary);
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: .2s ease-in-out;
+}
+
+.content.active {
+  opacity: 1;
+}
+
+.content.prev {
+  transform: translateX(-100%);
+}
+
+.content.next {
+  transform: translateX(100%);
+}

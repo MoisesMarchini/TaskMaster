@@ -8,6 +8,8 @@ import { BoardsModule } from './features/boards/boards.module';
 import { TasksModule } from './features/tasks/tasks.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SplashModule } from './features/splash/splash.module';
+import { AuthModule } from './features/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TasksModule,
+
+    AuthModule,
+    SplashModule,
     BoardsModule,
+    TasksModule,
     SharedModule,
+
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

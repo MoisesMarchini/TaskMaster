@@ -39,15 +39,9 @@ $custom-colors: (
 
 
 $theme-colors: map-merge-multiple($theme-colors, $custom-colors);
-
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 
 $utilities-bg: map-merge-multiple($utilities-colors, $theme-colors-rgb);
-
 $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");
 
 @import "node_modules/bootstrap/scss/bootstrap";
-
-:root {
-  --mdc-theme-primary: var(--bs-primary);
-}

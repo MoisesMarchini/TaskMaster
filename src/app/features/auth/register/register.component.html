@@ -1,0 +1,28 @@
+<form action="" class="d-flex flex-column h-100 flex-grow-1">
+  <div class="form-fields flex-grow-1 d-flex flex-column justify-content-center">
+    <h1 class="fs-1 fw-500 text-center">Registrar</h1>
+    <mat-form-field class="mb-1 w-100"><mat-label>E-mail</mat-label>
+      <input matInput type="email" placeholder="user@email.com" name="email" required>
+      <!-- <mat-error *ngIf="newTaskForm.invalid && !task.title">
+        Deve ser preenchido
+      </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="mb-1 w-100"><mat-label>Senha</mat-label>
+      <input matInput type="password" placeholder="******" name="password" required>
+      <!-- <mat-error *ngIf="newTaskForm.invalid && !task.title">
+        Deve ser preenchido
+      </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="mb-1 w-100"><mat-label>Confirmar Senha</mat-label>
+      <input matInput type="password" placeholder="******" name="confirmpassword" required>
+      <!-- <mat-error *ngIf="newTaskForm.invalid && !task.title">
+        Deve ser preenchido
+      </mat-error> -->
+    </mat-form-field>
+  </div>
+  <!-- BOTÕES -->
+  <button type="submit" class="btn btn-primary text-white w-100 mb-3 py-2">Salvar</button>
+  <span class="divider my-2">
+    <span>Possui conta? <a href="#" routerLink="/login">Logar</a></span>
+  </span>
+</form>

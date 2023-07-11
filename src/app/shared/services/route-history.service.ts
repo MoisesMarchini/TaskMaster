@@ -13,7 +13,7 @@ export class RouteHistoryService {
   constructor(private router: Router) {
     if (RouteHistoryService.routeHistory.length > 0)
       return;
-    
+
     this.router.events.subscribe(event => {
       if (event instanceof ActivationEnd) {
         const snapshot = event.snapshot;
@@ -53,6 +53,7 @@ export class RouteHistoryService {
   }
 
   isRootRoute(): boolean {
-    return RouteHistoryService.currentRoute === ''
+    const currentRouteConfig = RouteHistoryService.currentRouteConfig;
+    return (currentRouteConfig && currentRouteConfig.data && currentRouteConfig?.data['root'] === true)?? false;
   }
 }

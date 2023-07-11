@@ -1,0 +1,12 @@
+:host {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-color: var(--bs-body-bg);
+}
+
+.container {
+  padding: 5vmin;
+  max-width: 400px;
+}
