@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppOptions } from 'src/app/core/app-options';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-splash',
@@ -11,33 +13,47 @@ export class SplashComponent implements OnInit {
 
   tabsContent = [
     {
-      title: 'Bem vindo ao TaskMaster',
-      textMuted: 'Seu App de produtividade.',
-      textContent: '',
+      artworkUrl: '/assets/artworks/Complete-task.png',
+      title: 'Bem vindo ao TaskMaster!',
+      textContent: 'Nosso aplicativo foi projetado para ajudar você a organizar suas tarefas de forma eficiente e acompanhar seu progresso.',
+      buttonText: 'Próximo',
+    },
+    // {
+    //   artworkUrl: '',
+    //   title: 'Defina seus Quadros e Tarefas!',
+    //   textContent: "Com TaskMaster, você pode criar quadros Kanban personalizados, adicionar tarefas, atribuir prazos e muito mais.",
+    //   buttonText: 'Próximo',
+    // },
+    {
+      artworkUrl: '/assets/artworks/successful-task-completion.png',
+      title: 'Adicione tarefas',
+      textContent: "Toque no botão '+' para adicionar tarefas.<br> Dê um título à tarefa e pronto, rápido e prático!",
       buttonText: 'Próximo',
     },
     {
-      title: 'Defina suas Tarefas',
-      textMuted: '',
-      textContent: "Clique no botão '+' no canto inferior direito para criar tarefas.",
-      buttonText: 'Próximo',
-    },
-    {
-      title: 'Suprindo suas necessidades',
-      textMuted: '',
-      textContent: 'Você pode mover as tarefas para as suas determinadas mesas.',
+      artworkUrl: '/assets/artworks/Organizing-projects.png',
+      title: 'Gerencie suas tarefas',
+      textContent: "Arraste e solte as tarefas entre as colunas para atualizar o status.<br> Veja suas tarefas ganharem vida!",
       buttonText: 'Começar',
     },
   ]
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private loaderService: LoaderService
+  ) { }
 
   ngOnInit() {
+    if (AppOptions.tutorial) {
+      this.loaderService.showLoader();
+      this.router.navigateByUrl('/boards');
+    }
   }
 
   nextTab() {
     const nextTab = (this.currentTabIndex + 1) % this.tabsContent.length;
     if (nextTab === 0) {
+      AppOptions.tutorial = true;
       this.router.navigateByUrl('/boards');
       return;
     }

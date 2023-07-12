@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   setDarkMode(change: boolean = true){
     const htmlClassList = document.documentElement.classList;
+    const themeColorElement = document.getElementById('theme-color-element');
 
     if (change)
       this.darkMode = !this.darkMode;
@@ -33,6 +34,9 @@ export class HeaderComponent implements OnInit {
       htmlClassList.remove('dark-mode');
     else
       htmlClassList.add('dark-mode');
+
+    if (themeColorElement)
+      themeColorElement.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bs-container-bg'));
   }
 
   clearBoardsData() {

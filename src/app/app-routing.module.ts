@@ -8,14 +8,14 @@ import { AuthComponent } from './features/auth/auth.component';
 
 const routes: Routes = [
   { path: 'boards', component: BoardComponent, data: {title: 'Minhas Tarefas', root: true} },
-  { path: 'splash', component: SplashComponent, data: {title: 'TaskMaster'} },
-  {
-    path: '', component: AuthComponent, data: { title: 'TaskMaster' }, children: [
-      { path: 'login', component: LoginComponent, data: {title: 'Login'} },
-      { path: 'register', component: RegisterComponent, data: {title: 'Registrar'} },
-      { path: '**', redirectTo: '/login' }
-    ]
-  },
+  { path: '', component: SplashComponent, data: {title: 'TaskMaster'} },
+  // {
+  //   path: '', component: AuthComponent, data: { title: 'TaskMaster' }, children: [
+  //     { path: 'login', component: LoginComponent, data: {title: 'Login'} },
+  //     { path: 'register', component: RegisterComponent, data: {title: 'Registrar'} },
+  //     { path: '**', redirectTo: '/login' }
+  //   ]
+  // },
   { path: '**', redirectTo: '/' }
 ];
 

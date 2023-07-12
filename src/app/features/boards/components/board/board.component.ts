@@ -9,6 +9,8 @@ import { Task } from 'src/app/features/tasks/models/task';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add-task.component';
 import { BoardsService } from '../../services/boards.service';
+import { AppOptions } from 'src/app/core/app-options';
+import { LoaderService } from '../../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-board',
@@ -22,11 +24,19 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private boardsService: BoardsService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    public loaderService: LoaderService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if (!AppOptions.tutorial){
+      this.router.navigateByUrl('/splash');
+      return;
+    }
+
     this.updateBoards();
+    this.loaderService.hideLoader(2000);
   }
 
   drop(event: CdkDragDrop<any[]>) {

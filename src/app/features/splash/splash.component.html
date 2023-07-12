@@ -1,20 +1,32 @@
 <div class="container text-center d-flex flex-column">
-  <div class="container-content flex-grow-1 position-relative">
-    <ng-container *ngFor="let tab of tabsContent; let i = index">
-      <div
-      class="content d-flex flex-column"
-      [class.active]="i === currentTabIndex"
-      [class.prev]="i < currentTabIndex"
-      [class.next]="i > currentTabIndex"
-      >
-
-        <h1 class="my-2 fw-500 fs-1" style="font-size: 20px; line-height: 32px;" [innerHTML]="tab.title"></h1>
-        <p *ngIf="tab.textMuted != ''" class="fw-500 text-muted fs-3" [innerHTML]="tab.textMuted"></p>
-      </div>
-    </ng-container>
+  <div class="flex-grow-1 d-flex flex-column">
+    <div
+    [style]="'--_current-index: '+currentTabIndex"
+    class="d-flex flex-nowrap w-100 overflow-visible container-content flex-grow-1">
+      <ng-container *ngFor="let tab of tabsContent; let i = index">
+        <div
+        class="content d-flex flex-column flex-grow-1"
+        [class.active]="i === currentTabIndex"
+        >
+          <div
+          style="flex-basis: 70%;"
+          class="artwork-container d-flex align-items-center">
+            <img
+            style="width: 100%; object-fit: cover;"
+            [src]="tab.artworkUrl" alt="">
+          </div>
+          <div
+          style="flex-basis: 30%;"
+          class="content-text">
+            <h1 class="my-2 fw-500 fs-1" style="line-height: 32px;" [innerHTML]="tab.title"></h1>
+            <p *ngIf="tab.textContent != ''" class="fw-500 fs-4" [innerHTML]="tab.textContent"></p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </div>
-  <div class="indicator-group d-flex align-items-center justify-content-center gap-2 my-3">
-    <span *ngFor="let tab of tabsContent; let i = index" [class.active]="i === currentTabIndex" class="indicator shadow"></span>
+  <div class="indicator-group d-flex align-items-center justify-content-center gap-1 my-3">
+    <span *ngFor="let tab of tabsContent; let i = index" [class.active]="i === currentTabIndex" class="indicator shadow-lg"></span>
   </div>
   <button type="button" class="btn btn-primary w-100 fw-500 text-white" (click)="nextTab()">
     {{tabsContent[currentTabIndex].buttonText}}

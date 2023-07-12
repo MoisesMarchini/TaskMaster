@@ -7,6 +7,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { LoaderComponent } from './loader/loader.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,11 +20,13 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     FooterComponent,
     TaskCardComponent,
+    LoaderComponent,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     TaskCardComponent,
+    LoaderComponent,
   ]
 })
 export class ComponentsModule { }

@@ -3,7 +3,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-container-bg);
 }
 
 .container {

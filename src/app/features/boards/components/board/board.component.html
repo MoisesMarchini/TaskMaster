@@ -1,3 +1,7 @@
+<ng-container *ngIf="loaderService.isShow()">
+  <app-loader></app-loader>
+</ng-container>
+
 <div
 cdkDropListGroup
 class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
@@ -17,7 +21,13 @@ class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
       (cdkDropListDropped)="drop($event)"
       [class.border]="board.tasks.length > 0"
       style="border-radius: 4px;"
-      class="drag-list overflow-hidden d-inline-block mt-0">
+      class="drag-list overflow-hidden d-inline-block mt-0 position-relative">
+        <span *ngIf="!board.tasks.length"
+        style="inset: 0; position: absolute; z-index: -1; opacity: .5; place-content: center;"
+        class="text-center display-1 fs-2 d-grid"
+        >
+          Opa, não há nada aqui
+        </span>
         <ng-container *ngFor="let task of board.tasks; let i = index">
           <app-task-card [task]="task" [isLast]="i === board.tasks.length -1" (onChangesEvent)="changeTaskBoard()"></app-task-card>
         </ng-container>

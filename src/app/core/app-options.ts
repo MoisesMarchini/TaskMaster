@@ -1,10 +1,12 @@
 const key = 'options'
 const defaultOptions: Options = {
   darkMode: false,
+  tutorial: false,
 }
 
 interface Options {
   darkMode: boolean,
+  tutorial?: boolean,
 }
 
 export const AppOptions = {
@@ -27,6 +29,17 @@ export const AppOptions = {
   set darkMode(value) {
     const _options = this.options;
     _options.darkMode = value;
+
+    localStorage.setItem(key, JSON.stringify(_options));
+  },
+
+  get tutorial() {
+    return this.options.tutorial;
+  },
+
+  set tutorial(value) {
+    const _options = this.options;
+    _options.tutorial = value;
 
     localStorage.setItem(key, JSON.stringify(_options));
   },
