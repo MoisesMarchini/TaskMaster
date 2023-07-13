@@ -1,0 +1,22 @@
+<div
+style="max-width: 500px;"
+class="mx-auto ">
+  <form #newBoardForm="ngForm" (ngSubmit)="onSubmit(newBoardForm)" class="w-100" >
+    <div
+    class="card p-2 border-0">
+    <h5 class="fs-2 fw-500">Novo Quadro</h5>
+    <mat-form-field class="mb-3">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Ex.: Ir ao mercado" name="name" [(ngModel)]="board.name" required>
+      <mat-error *ngIf="newBoardForm.invalid && !board.name">
+        Deve ser preenchido
+      </mat-error>
+    </mat-form-field>
+      <button
+      type="submit"
+      [class.disabled]="newBoardForm.invalid"
+      [class.opacity-50]="newBoardForm.invalid"
+      class="btn btn-primary text-white fw-500 mt-0 px-4 rounded-pill mx-auto">Salvar</button>
+    </div>
+  </form>
+</div>

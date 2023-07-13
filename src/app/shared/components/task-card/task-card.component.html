@@ -1,4 +1,8 @@
-<div cdkDrag [class.border-bottom]="!isLast" class="card card-task rounded-0 shadow-sm border-0 drag-item p-2 ps-3 shadow-none flex-row">
+<div cdkDrag [class.border-bottom]="!isLast" class="card card-task rounded-0 shadow-sm border-0 drag-item p-2 ps-1 shadow-none flex-row">
+
+  <div class="drag-handle" cdkDragHandle>
+    <mat-icon>drag_indicator</mat-icon>
+  </div>
   <div class="card-content flex-grow-1 d-flex flex-column justify-content-center">
     <p class="m-0 fw-500 fs-regular">
       {{task?.title}}

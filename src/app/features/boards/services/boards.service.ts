@@ -75,22 +75,24 @@ export class BoardsService {
   }
 
   editBoard(newBoard: Board, boardId: string) {
-    const existedBoard = BoardManager.boards.find(p => p.id === boardId);
+    const _boards = BoardManager.boards;
+    const existedBoard = _boards.find(p => p.id === boardId);
     if (!existedBoard)
       return;
 
     Object.assign(existedBoard, newBoard);
+    BoardManager.boards = _boards;
+    this.updateBoards();
   }
 
   newBoard(board: Board) {
+    const _boards = BoardManager.boards;
     const boardId = 'custom-board-' + BoardManager.boards.length + 1;
 
     board.id = boardId;
-    BoardManager.boards.push(board);
-  }
+    _boards.push(board);
 
-  save() {
-    console.log(BoardManager.boards)
-    BoardManager.boards = BoardManager.boards;
+    BoardManager.boards = _boards;
+    this.updateBoards();
   }
 }

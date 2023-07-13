@@ -1,7 +1,29 @@
-.board-column{
-  width: 100%;
+:host {
+  flex-grow: 1;
+  display: flex;
+}
+
+.board-group {
+  padding-bottom: calc(5rem);
+}
+
+.board-column {
+  min-width: min(250px, 100%);
   flex-basis: 0;
   .board-header{
+    position: relative;
+    margin-bottom: 8px !important;
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 50px;
+      background-color: currentColor;
+      background-color: rgba(var(--_bg-color), 1);
+    }
     span.circle-sign{
       display: inline-block;
       background-color: rgba(var(--_bg-color), 1);
@@ -14,7 +36,7 @@
   }
 }
 
-#btn-new-task{
+#btn-new-task {
   display: grid;
   place-content: center;
   position: fixed;

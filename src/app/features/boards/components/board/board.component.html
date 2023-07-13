@@ -3,27 +3,40 @@
 </ng-container>
 
 <div
+#boardGroup
 cdkDropListGroup
-class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
+
+cdkDropList
+[cdkDropListOrientation]="isFlexRow(boardGroup)? 'horizontal' : 'vertical'"
+[cdkDropListData]="boards"
+(cdkDropListDropped)="drop($event, 'board')"
+style="min-height: 100%;"
+class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex-grow-1 pt-3 overflow-auto">
   <ng-container *ngFor="let board of boards; let i = index">
     <div
-    [style]="'--_bg-color: var(--bs-'+board.color+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); height: fit-content;'"
-    class="board-column card shadow-none border-0 rounded flex-grow-1 p-2">
+    cdkDrag
+    [style]="'--_bg-color: var(--bs-'+(board.color == ''? 'container-color' : board.color)+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); height: fit-content;'"
+    class="board-column drag-item d-flex flex-column card shadow-none border-0 rounded flex-lg-grow-1 p-2">
       <h6
-      class="m-0 fw-500 fs-2 bg-opacity-50 board-header d-flex align-items-center p-2 mb-1">
-        <span
-        class="rounded-circle circle-sign me-2"></span>
+      style="cursor: default;"
+      class="m-0 fw-500 fs-2 bg-opacity-50 board-header d-flex align-items-center p-2 ps-1 mb-1">
+        <div
+        class="drag-handle" cdkDragHandle>
+          <mat-icon>drag_indicator</mat-icon>
+        </div>
+        <!-- <span
+        class="circle-sign me-2"></span> -->
         {{board.name}}
       </h6>
       <div
       cdkDropList
       [cdkDropListData]="board.tasks"
-      (cdkDropListDropped)="drop($event)"
+      (cdkDropListDropped)="drop($event, 'task')"
       [class.border]="board.tasks.length > 0"
       style="border-radius: 4px;"
       class="drag-list overflow-hidden d-inline-block mt-0 position-relative">
         <span *ngIf="!board.tasks.length"
-        style="inset: 0; position: absolute; z-index: -1; opacity: .5; place-content: center;"
+        style="inset: 0; position: absolute; z-index: -1; opacity: .5; place-content: center; pointer-events: none;"
         class="text-center display-1 fs-2 d-grid"
         >
           Opa, não há nada aqui
@@ -35,6 +48,15 @@ class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 w-100 mb-5">
     </div>
   </ng-container>
 </div>
-<button type="button" class="btn btn-primary text-white rounded-circle shadow m-3 m-lg-5" id="btn-new-task" (click)="openNewTask()">
+
+<button type="button" mat-icon-button [matMenuTriggerFor]="menu" class="btn btn-primary text-white rounded-circle shadow m-3 m-lg-5" id="btn-new-task">
   <mat-icon class="h-100 w-100">add</mat-icon>
 </button>
+<mat-menu #menu="matMenu" class="px-2 container-bg">
+  <button mat-menu-item class="border-bottom" (click)="openNewTask()">
+    <span>Nova tarefa</span>
+  </button>
+  <button mat-menu-item (click)="openNewBoard()">
+    <span>Novo quadro</span>
+  </button>
+</mat-menu>

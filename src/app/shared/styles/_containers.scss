@@ -11,10 +11,17 @@
   background-color: transparent;
 }
 
-// .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
-//   color: rgba(var(--bs-container-color-rgb), .6)
-// }
+.container {
+  --_offset: 1rem;
+  --_max-width: max(960px, calc(80% - var(--_offset)));
+  --_min-width: min(500px, calc(100% - var(--_offset) * .5));
+  --_width: clamp(var(--_min-width), 80vw, var(--_max-width));
+  --_padding: calc((100vw - var(--_width)) * .5 + var(--_offset) * .5);
 
-// .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
-//   color: var(--mdc-theme-error, #f44336);
-// }
+  max-width: unset;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: var(--_padding);
+  padding-right: var(--_padding);
+}
