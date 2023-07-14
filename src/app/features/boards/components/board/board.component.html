@@ -15,26 +15,22 @@ class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex
   <ng-container *ngFor="let board of boards; let i = index">
     <div
     cdkDrag
-    [style]="'--_bg-color: var(--bs-'+(board.color == ''? 'container-color' : board.color)+'-rgb); --_text-color: var(--bs-'+board.color+'-dark); height: fit-content;'"
-    class="board-column drag-item d-flex flex-column card shadow-none border-0 rounded flex-lg-grow-1 p-2">
-      <h6
-      style="cursor: default;"
-      class="m-0 fw-500 fs-2 bg-opacity-50 board-header d-flex align-items-center p-2 ps-1 mb-1">
-        <div
-        class="drag-handle" cdkDragHandle>
-          <mat-icon>drag_indicator</mat-icon>
-        </div>
-        <!-- <span
-        class="circle-sign me-2"></span> -->
-        {{board.name}}
+    [style]="'--_column-color: var(--bs-'+board.color+');--_column-color-rgb: var(--bs-'+(board.color == ''? 'container-color' : board.color)+'-rgb); height: fit-content;'"
+    class="board-column drag-item d-flex flex-column card shadow-none rounded flex-lg-grow-1 pt-0 overflow-hidden border-0">
+      <h6 [class]="'align-items-center board-header d-flex fs-2 fw-500 m-0 ps-3 my-2 me-2'">
+        <span cdkDragHandle [class]="'flex-grow-1 h-100 d-grid align-items-center me-2'">{{board.name}}</span>
+        <button type="button" [class]="'btn btn-opt btn-outline-'+board.color">
+          <mat-icon>more_vert</mat-icon>
+        </button>
       </h6>
+      <hr style="color: var(--_column-color);" class="opacity-100 m-0">
       <div
       cdkDropList
       [cdkDropListData]="board.tasks"
       (cdkDropListDropped)="drop($event, 'task')"
       [class.border]="board.tasks.length > 0"
       style="border-radius: 4px;"
-      class="drag-list overflow-hidden d-inline-block mt-0 position-relative">
+      class="drag-list overflow-hidden d-inline-block m-2 position-relative">
         <span *ngIf="!board.tasks.length"
         style="inset: 0; position: absolute; z-index: -1; opacity: .5; place-content: center; pointer-events: none;"
         class="text-center display-1 fs-2 d-grid"

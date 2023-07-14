@@ -1,13 +1,5 @@
-.drag-handle {
+.cdk-drag-handle {
   cursor: grab;
-  width: 32px;
-  height: 32px;
-  align-self: center;
-  justify-self: center;
-  display: grid;
-  place-content: center;
-  color: currentColor;
-  // color: rgba(var(--_bg-color), 1);
 }
 
 .drag-list.cdk-drop-list-dragging .drag-item:not(.cdk-drag-placeholder) {
@@ -17,7 +9,7 @@
 .drag-list{
   isolation: isolate;
   z-index: 0;
-  min-height: 65px;
+  min-height: 66px;
 }
 
 .cdk-drag-animating {

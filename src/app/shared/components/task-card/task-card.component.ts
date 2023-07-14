@@ -16,6 +16,7 @@ export class TaskCardComponent implements OnInit {
   @Output() onChangesEvent = new EventEmitter();
 
   boards = BoardManager.boards.filter(board => board.id !== this.task?.boardId);
+  boardColor = '';
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -24,6 +25,7 @@ export class TaskCardComponent implements OnInit {
 
   ngOnInit() {
     this.boards = BoardManager.boards.filter(board => board.id !== this.task?.boardId);
+    this.boardColor = BoardManager.boards.find(board => board.id === this.task?.boardId)?.color?? '';
   }
 
   setBoard(boardId?: string) {

@@ -1,21 +1,11 @@
-// rgba(63, 81, 181, 0.87)
-// $primary: #db7f34;
-// $primary-light: #d8ae77;
-// $primary-dark: #923b21;
 $primary: #3f51b5;
-$primary-light: #2f97d4;
-$primary-dark: #092277;
-$secondary: #e74c3c;
 $highlight: #db7f34;
-$highlight-light: #d8ae77;
-$highlight-dark: #923b21;
-$success: #34db3c;
-$success-light: #80ffd9;
-$success-dark: #0c8046;
+
 $dark: #333333;
 $light: #ddd;
 $white: #fff;
 $black: #222222;
+
 $container-bg: $white;
 $container-color: $black;
 $body-bg: $light;
@@ -23,15 +13,7 @@ $body-color: $black;
 
 $custom-colors: (
   'primary': $primary,
-  'primary-light': $primary-light,
-  'primary-dark': $primary-dark,
-  'secondary': $secondary,
   'highlight': $highlight,
-  'highlight-light': $highlight-light,
-  'highlight-dark': $highlight-dark,
-  'success': $success,
-  'success-light': $success-light,
-  'success-dark': $success-dark,
   'dark': $dark,
   'light': $light,
   'white': $white,

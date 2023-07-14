@@ -23,3 +23,14 @@
 .btn{
   --bs-btn-border-radius: 4px;
 }
+
+.btn.btn-opt {
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: grid;
+  place-content: center;
+  --bs-btn-color: currentColor;
+}
