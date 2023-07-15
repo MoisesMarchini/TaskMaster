@@ -1,4 +1,4 @@
-import { Board } from "./models/board";
+import { Board, BoardColor } from "./models/board";
 
 const key = 'boards'
 
@@ -6,17 +6,17 @@ const defaultBoards: Board[] = [
   {
     id: 'board-001',
     name: 'A Fazer',
-    color: 'primary'
+    color: BoardColor.blue
   },
   {
     id: 'board-002',
     name: 'Em Progresso',
-    color: 'highlight'
+    color: BoardColor.orange
   },
   {
     id: 'board-003',
     name: 'Concluído',
-    color: 'success'
+    color: BoardColor.green
   },
 ]
 

@@ -8,6 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderComponent } from './loader/loader.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,7 @@ import { LoaderComponent } from './loader/loader.component';
     DragDropModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
   ],
   declarations: [
     HeaderComponent,

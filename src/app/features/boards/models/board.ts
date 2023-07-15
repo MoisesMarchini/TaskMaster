@@ -6,7 +6,7 @@ export interface Board {
   name: string,
   disabled?: boolean,
   isCompleted?: boolean,
-  color: 'primary' | 'highlight' | 'success' | 'red' | 'dark' | 'yellow' | 'purple' | string,
+  color: BoardColor,
 }
 
 export interface BoardViewModel {
@@ -15,5 +15,16 @@ export interface BoardViewModel {
   collapsed: boolean,
   isCompleted?: boolean,
   tasks: Task[],
-  color: 'primary' | 'highlight' | 'success' | 'red' | 'dark' | 'yellow' | 'purple' | string,
+  color: BoardColor,
+}
+
+export enum BoardColor {
+  blue = 'blue',
+  cyan = 'cyan',
+  red = 'red',
+  yellow = 'yellow',
+  purple = 'purple',
+  pink = 'pink',
+  orange = 'orange',
+  green = 'green',
 }

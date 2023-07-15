@@ -9,6 +9,7 @@
 
 .board-column {
   min-width: min(250px, 100%);
+  height: fit-content;
   flex-basis: 0;
   .board-header{
     position: relative;

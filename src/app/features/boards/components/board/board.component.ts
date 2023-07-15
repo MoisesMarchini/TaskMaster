@@ -2,12 +2,14 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { BoardManager } from '../../board-manager'
 import { Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add-task.component';
 import { BoardsService } from '../../services/boards.service';
 import { AppOptions } from 'src/app/core/app-options';
 import { LoaderService } from '../../../../shared/components/loader/loader.service';
 import { AddBoardComponent } from '../add-board/add-board.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditBoardComponent } from '../edit-board/edit-board.component';
+import { Board } from '../../models/board';
 
 @Component({
   selector: 'app-board',
@@ -21,9 +23,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private boardsService: BoardsService,
-    private _bottomSheet: MatBottomSheet,
+    public dialog: MatDialog,
     public loaderService: LoaderService,
-    private renderer: Renderer2,
     private router: Router
   ) { }
 
@@ -60,10 +61,6 @@ export class BoardComponent implements OnInit {
     this.updateBoards();
   }
 
-  updateBoardsAfterChange() {
-    this.boardsService.updateBoards('boardService');
-  }
-
   updateBoards() {
     this.boardsService.updateBoards('boardManager');
   }
@@ -73,11 +70,21 @@ export class BoardComponent implements OnInit {
   }
 
   openNewTask(): void {
-    this._bottomSheet.open(AddTaskComponent);
+    this.dialog.open(AddTaskComponent);
   }
 
   openNewBoard(): void {
-    this._bottomSheet.open(AddBoardComponent);
+    this.dialog.open(AddBoardComponent);
+  }
+
+  openEditBoard(boardId: string) {
+    EditBoardComponent.id = boardId;
+    this.dialog.open(EditBoardComponent);
+  }
+
+  deleteBoard(board: Board) {
+    board.disabled = true;
+    this.boardsService.editBoard(board, board.id?? '')
   }
 
   isFlexRow(elementRef: HTMLElement) {

@@ -15,15 +15,27 @@ class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex
   <ng-container *ngFor="let board of boards; let i = index">
     <div
     cdkDrag
-    [style]="'--_column-color: var(--bs-'+board.color+');--_column-color-rgb: var(--bs-'+(board.color == ''? 'container-color' : board.color)+'-rgb); height: fit-content;'"
-    class="board-column drag-item d-flex flex-column card shadow-none rounded flex-lg-grow-1 pt-0 overflow-hidden border-0">
+    [style]="'--_column-color: var(--bs-'+board.color+');--_column-color-rgb: var(--bs-'+board.color+'-rgb);'"
+    class="board-column drag-item d-flex flex-column card shadow-none rounded flex-lg-grow-1 pt-0 border-0">
       <h6 [class]="'align-items-center board-header d-flex fs-2 fw-500 m-0 ps-3 my-2 me-2'">
-        <span cdkDragHandle [class]="'flex-grow-1 h-100 d-grid align-items-center me-2'">{{board.name}}</span>
-        <button type="button" [class]="'btn btn-opt btn-outline-'+board.color">
+        <span
+        style="white-space: nowrap; text-overflow: ellipsis;"
+        cdkDragHandle [class]="'flex-grow-1 h-100 d-grid align-items-center me-2 overflow-hidden'">{{board.name}}</span>
+        <button type="button" [matMenuTriggerFor]="boardMenu" [class]="'btn btn-opt btn-outline-'+board.color">
           <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #boardMenu="matMenu" class="px-2 container-bg">
+          <button mat-menu-item class="border-bottom" (click)="openEditBoard(board.id?? '')">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="deleteBoard(board)">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </mat-menu>
       </h6>
-      <hr style="color: var(--_column-color);" class="opacity-100 m-0">
+      <hr style="color: var(--_column-color); border-width: 2px;" class="opacity-100 m-0 mx-2">
       <div
       cdkDropList
       [cdkDropListData]="board.tasks"

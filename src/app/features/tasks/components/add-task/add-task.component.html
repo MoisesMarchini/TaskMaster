@@ -1,10 +1,7 @@
-<div
-style="max-width: 500px;"
-class="mx-auto ">
-  <form #newTaskForm="ngForm" (ngSubmit)="onSubmit(newTaskForm)" class="w-100" >
-    <div
-    class="card p-2 border-0">
-    <h5 class="fs-2 fw-500">Nova tarefa</h5>
+<h5 mat-dialog-title class="fs-2 fw-500 text-container-color">Nova tarefa</h5>
+<mat-dialog-content>
+  <form #newTaskForm="ngForm" (ngSubmit)="onSubmit(newTaskForm)"
+  class="d-flex flex-column text-container-color" style="max-width: 500px;" >
     <mat-form-field class="mb-3">
       <mat-label>Título</mat-label>
       <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
@@ -12,11 +9,25 @@ class="mx-auto ">
         Deve ser preenchido
       </mat-error>
     </mat-form-field>
+
+    <div class="form-actions d-flex flex-nowrap ms-auto gap-2">
+
+      <button
+      type="button"
+      mat-dialog-close
+      style="background-color: rgba(var(--bs-body-bg-rgb), .5); color: var(--bs-body-color);"
+      class="fw-500 px-4 rounded border-0">
+        Cancelar
+      </button>
       <button
       type="submit"
       [class.disabled]="newTaskForm.invalid"
       [class.opacity-50]="newTaskForm.invalid"
-      class="btn btn-primary text-white fw-500 mt-0 px-4 rounded-pill mx-auto">Salvar</button>
+      mat-dialog-close
+      class="btn btn-primary text-white fw-500 px-4 rounded border-0">
+        Salvar
+      </button>
+
     </div>
   </form>
-</div>
+</mat-dialog-content>

@@ -1,0 +1,8 @@
+.color-group .btn.btn-color {
+  --bs-btn-color: rgba(var(--bs-container-color-rgb), .5);
+  --bs-btn-bg: var(--bs-body-bg);
+  &:hover:not(.active){
+    color: var(--bs-btn-color);
+    background-color: var(--bs-btn-bg);
+  }
+}

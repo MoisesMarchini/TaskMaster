@@ -1,0 +1,24 @@
+.mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid):not(.mdc-text-field--focused) {
+  .mdc-floating-label {
+    color: currentColor;
+  }
+  .mdc-line-ripple::before {
+    border-bottom-color: currentColor;
+    opacity: .45;
+  }
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) {
+  .mdc-text-field__input{
+    color: currentColor !important;
+  }
+  .mdc-text-field__input::placeholder{
+    color: rgba(var(--bs-container-color-rgb), .5) !important;
+  }
+}
+
+.mat-mdc-dialog-container{
+  --mdc-dialog-container-color: var(--bs-container-bg);
+  --mdc-dialog-subhead-color: var(--bs-container-color);
+  --mdc-dialog-supporting-text-color: var(--bs-container-color);
+}

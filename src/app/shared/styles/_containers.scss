@@ -13,7 +13,7 @@
 
 .container {
   --_offset: 1rem;
-  --_max-width: max(960px, calc(80% - var(--_offset)));
+  --_max-width: 1320px;//max(960px, calc(80% - var(--_offset)));
   --_min-width: min(500px, calc(100% - var(--_offset) * .5));
   --_width: clamp(var(--_min-width), 80vw, var(--_max-width));
   --_padding: calc((100vw - var(--_width)) * .5 + var(--_offset) * .5);

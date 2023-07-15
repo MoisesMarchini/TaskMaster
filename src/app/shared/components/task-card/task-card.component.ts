@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../../../features/tasks/models/task';
 import { BoardManager } from 'src/app/features/boards/board-manager';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { EditTaskComponent } from 'src/app/features/tasks/components/edit-task/edit-task.component';
 import { TaskService } from '../../../features/tasks/services/task.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-task-card',
@@ -19,7 +19,7 @@ export class TaskCardComponent implements OnInit {
   boardColor = '';
 
   constructor(
-    private _bottomSheet: MatBottomSheet,
+    public dialog: MatDialog,
     private taskService: TaskService
   ) { }
 
@@ -52,7 +52,7 @@ export class TaskCardComponent implements OnInit {
 
   editTask() {
     EditTaskComponent.id = this.task?.id?? '';
-    this._bottomSheet.open(EditTaskComponent);
+    this.dialog.open(EditTaskComponent);
   }
 
 }

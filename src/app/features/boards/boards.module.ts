@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { BoardComponent } from './components/board/board.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { MatIconModule } from '@angular/material/icon';
 import { AddBoardComponent } from './components/add-board/add-board.component';
 import { EditBoardComponent } from './components/edit-board/edit-board.component';
+
+import { SharedModule } from 'src/app/shared/shared.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -18,9 +21,10 @@ import { MatMenuModule } from '@angular/material/menu';
     DragDropModule,
     MatMenuModule,
     MatIconModule,
-    MatBottomSheetModule,
     FormsModule,
     MatInputModule,
+    MatChipsModule,
+    MatDialogModule,
   ],
   declarations: [
     BoardComponent,

@@ -1,0 +1,46 @@
+<h5 mat-dialog-title class="fs-2 fw-500 text-container-color">{{title}}</h5>
+<mat-dialog-content>
+  <form #boardForm="ngForm" (ngSubmit)="onSubmit(boardForm)" 
+  class="d-flex flex-column text-container-color" style="max-width: 500px;" >
+    <mat-form-field class="mb-4">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Ex.: A Fazer" name="name" [(ngModel)]="board.name" required>
+      <mat-error *ngIf="boardForm.invalid && !board.name">
+        Deve ser preenchido
+      </mat-error>
+    </mat-form-field>
+    <div class="form-group mb-3">
+      <span class="fs-3 px-3 mb-3 d-block">Cor</span>
+      <div class="color-group d-flex flex-nowrap overflow-auto gap-2 pb-2 px-3">
+        <button *ngFor="let colorOption of boardColorOptions" type="button"
+        style="white-space: nowrap;"
+        [class.active]="board.color === colorOption.color"
+        [class]="'btn btn-color rounded-pill py-1 border-0 fw-500 fs-4 text-capitalize btn-outline-'+colorOption.color"
+        (click)="setColor(colorOption.color)">
+          {{colorOption.name}}
+        </button>
+      </div>
+    </div>
+
+    <div class="form-actions d-flex flex-nowrap ms-auto gap-2">
+
+      <button
+      type="button"
+      mat-dialog-close
+      style="background-color: rgba(var(--bs-body-bg-rgb), .5); color: var(--bs-body-color);"
+      class="fw-500 px-4 rounded border-0">
+        Cancelar
+      </button>
+      <button
+      type="submit"
+      [class.disabled]="boardForm.invalid"
+      [class.opacity-50]="boardForm.invalid"
+      mat-dialog-close
+      class="btn btn-primary text-white fw-500 px-4 rounded border-0">
+        Salvar
+      </button>
+
+    </div>
+
+  </form>
+</mat-dialog-content>

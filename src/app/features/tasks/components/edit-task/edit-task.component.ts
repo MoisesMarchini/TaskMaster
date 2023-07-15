@@ -3,7 +3,6 @@ import { Task } from '../../models/task';
 import { TaskManager } from '../../task-manager';
 import { NgForm } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { BoardsService } from '../../../boards/services/boards.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class EditTaskComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private boardsService: BoardsService,
-    private _bottomSheetRef: MatBottomSheetRef<EditTaskComponent>
   ) {
   }
 
@@ -40,7 +38,6 @@ export class EditTaskComponent implements OnInit {
 
     this.taskService.updateTask(this.task);
     this.boardsService.updateBoards();
-    this._bottomSheetRef.dismiss();
   }
 
 }
