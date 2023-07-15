@@ -3,6 +3,7 @@ import { RouteHistoryService } from '../../services/route-history.service';
 import { BoardManager } from 'src/app/features/boards/board-manager';
 import { TaskManager } from 'src/app/features/tasks/task-manager';
 import { AppOptions } from 'src/app/core/app-options';
+import { DefaultDialog, DefaultDialogService } from '../default-dialog/default-dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,10 @@ export class HeaderComponent implements OnInit {
   get darkMode() { return AppOptions.darkMode };
   set darkMode(value) { AppOptions.darkMode = value };
 
-  constructor(private routeHistoryService: RouteHistoryService) { }
+  constructor(
+    private routeHistoryService: RouteHistoryService,
+    public defaultDialogService: DefaultDialogService,
+  ) { }
 
   ngOnInit() {
     this.setDarkMode(false);
@@ -40,19 +44,41 @@ export class HeaderComponent implements OnInit {
   }
 
   clearBoardsData() {
-    BoardManager.clearData();
-    window.location.reload();
+    const dialog: DefaultDialog = {
+      title: 'Deletar Quadros',
+      contentHTML:
+        `<p class="mx-auto">
+        Tem certeza que deseja deletar <strong>TODOS</strong> os quadros e as tarefas neles?
+      </p>`,
+      confirmBtnColor: 'red',
+      confirmBtnText: 'Excluir'
+    };
+
+    const onConfirm = () => {
+      BoardManager.clearData();
+      TaskManager.clearData();
+      window.location.reload();
+    };
+
+    this.defaultDialogService.openDialog(dialog, onConfirm);
   }
 
   clearTasksData() {
-    TaskManager.clearData();
-    window.location.reload();
-  }
+    const dialog: DefaultDialog = {
+      title: 'Deletar Tarefas',
+      contentHTML:
+        `<p class="mx-auto">
+        Tem certeza que deseja deletar <strong>TODAS</strong> as tarefas?
+      </p>`,
+      confirmBtnColor: 'red',
+      confirmBtnText: 'Excluir'
+    };
 
-  clearAllData() {
-    BoardManager.clearData();
-    TaskManager.clearData();
-    AppOptions.clearData();
-    window.location.reload();
+    const onConfirm = () => {
+      TaskManager.clearData();
+      window.location.reload();
+    };
+
+    this.defaultDialogService.openDialog(dialog, onConfirm);
   }
 }

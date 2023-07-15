@@ -1,21 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { AddTaskComponent } from './components/add-task/add-task.component';
-import { EditTaskComponent } from './components/edit-task/edit-task.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { TasksDialogModule } from './dialogs/tasks-dialog.module';
+import { TasksComponentsModule } from './components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    MatInputModule,
-    MatDialogModule,
+    TasksDialogModule,
+    TasksComponentsModule
   ],
   declarations: [
-    AddTaskComponent,
-    EditTaskComponent,
   ],
 })
 export class TasksModule { }

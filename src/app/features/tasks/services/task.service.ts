@@ -10,9 +10,10 @@ export class TaskService {
 
   constructor() { }
 
-  newTask(task: Task, boardId: string) {
+  newTask(task: Task) {
     const taskList = TaskManager.tasks;
     const genericId = (TaskManager.tasks.length + 1).toString();
+    const boardId: string = BoardManager.boards.find(board => !board.disabled)?.id?? '';
 
     const _task: Task = {
       id: genericId,

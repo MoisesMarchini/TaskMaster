@@ -7,10 +7,11 @@ import { BoardsService } from '../../../boards/services/boards.service';
 
 @Component({
   selector: 'app-add-task',
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  templateUrl: '../tasks-dialog.component.html',
+  styleUrls: ['../tasks-dialog.component.css']
 })
 export class AddTaskComponent implements OnInit {
+  title = 'Nova Tarefa'
   task: Task = {
     title: '',
     index: -1,
@@ -30,7 +31,7 @@ export class AddTaskComponent implements OnInit {
     if(form.invalid)
       return;
 
-    this.taskService.newTask(this.task, BoardManager.boards[0].id ?? 'board-001');
+    this.taskService.newTask(this.task);
     this.boardsService.updateBoards();
   }
 

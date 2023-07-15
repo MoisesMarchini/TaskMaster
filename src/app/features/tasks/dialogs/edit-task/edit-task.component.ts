@@ -7,11 +7,12 @@ import { BoardsService } from '../../../boards/services/boards.service';
 
 @Component({
   selector: 'app-edit-task',
-  templateUrl: './edit-task.component.html',
-  styleUrls: ['./edit-task.component.css']
+  templateUrl: '../tasks-dialog.component.html',
+  styleUrls: ['../tasks-dialog.component.css']
 })
 export class EditTaskComponent implements OnInit {
   public static id: string;
+  title = 'Editar Tarefa'
   id?: string;
   task: Task = {
     title: '',

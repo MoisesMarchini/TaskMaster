@@ -9,4 +9,4 @@ import { CommonModule } from '@angular/common';
 
   ]
 })
-export class DirectivesModule { }
+export class SharedDirectivesModule { }

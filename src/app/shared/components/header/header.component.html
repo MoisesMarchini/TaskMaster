@@ -18,13 +18,10 @@
         </mat-menu>
         <mat-menu #dataMenu="matMenu" class="px-2 container-bg">
           <button mat-menu-item class="border-bottom" (click)="clearBoardsData()">
-            <span>Boards</span>
+            <span>Quadros</span>
           </button>
-          <button mat-menu-item class="border-bottom" (click)="clearTasksData()">
+          <button mat-menu-item (click)="clearTasksData()">
             <span>Tarefas</span>
-          </button>
-          <button mat-menu-item (click)="clearAllData()">
-            <span>Tudo</span>
           </button>
         </mat-menu>
       </div>

@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { TaskCardComponent } from './task-card/task-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderComponent } from './loader/loader.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DefaultDialogComponent } from './default-dialog/default-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,14 +21,13 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    TaskCardComponent,
     LoaderComponent,
+    DefaultDialogComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    TaskCardComponent,
     LoaderComponent,
   ]
 })
-export class ComponentsModule { }
+export class SharedComponentsModule { }

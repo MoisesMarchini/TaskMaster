@@ -1,11 +1,11 @@
-<h5 mat-dialog-title class="fs-2 fw-500 text-container-color">Editar tarefa</h5>
+<h5 mat-dialog-title class="fs-2 fw-500 text-container-color">{{title}}</h5>
 <mat-dialog-content>
-  <form #editTaskForm="ngForm" (ngSubmit)="onSubmit(editTaskForm)"
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)"
   class="d-flex flex-column text-container-color" style="max-width: 500px;" >
     <mat-form-field class="mb-3">
       <mat-label>Título</mat-label>
       <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
-      <mat-error *ngIf="editTaskForm.invalid && !task.title">
+      <mat-error *ngIf="taskForm.invalid && !task.title">
         Deve ser preenchido
       </mat-error>
     </mat-form-field>
@@ -21,8 +21,8 @@
       </button>
       <button
       type="submit"
-      [class.disabled]="editTaskForm.invalid"
-      [class.opacity-50]="editTaskForm.invalid"
+      [class.disabled]="taskForm.invalid"
+      [class.opacity-50]="taskForm.invalid"
       mat-dialog-close
       class="btn btn-primary text-white fw-500 px-4 rounded border-0">
         Salvar

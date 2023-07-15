@@ -25,6 +25,14 @@ class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #boardMenu="matMenu" class="px-2 container-bg">
+          <button *ngIf="board.tasks.length > 0" mat-menu-item [matMenuTriggerFor]="moveTasksMenu" class="border-bottom">
+            <!-- <mat-icon>edit</mat-icon> -->
+            <span>Mover Tarefas</span>
+          </button>
+          <button *ngIf="board.tasks.length > 0" mat-menu-item (click)="deleteTasks(board)" class="border-bottom">
+            <mat-icon>delete</mat-icon>
+            <span>Deletar Tarefas</span>
+          </button>
           <button mat-menu-item class="border-bottom" (click)="openEditBoard(board.id?? '')">
             <mat-icon>edit</mat-icon>
             <span>Editar</span>
@@ -32,6 +40,15 @@ class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex
           <button mat-menu-item (click)="deleteBoard(board)">
             <mat-icon>delete</mat-icon>
             <span>Excluir</span>
+          </button>
+        </mat-menu>
+        <mat-menu #moveTasksMenu="matMenu" class="px-2 container-bg">
+          <button *ngFor="let otherBoard of getOtherBoards(board); let i = index;"
+          mat-menu-item
+          [class.border-bottom]="i !== getOtherBoards(board).length -1"
+          (click)="moveTasksTo(board, otherBoard)">
+            <!-- <mat-icon>edit</mat-icon> -->
+            <span>Para: {{otherBoard.name}}</span>
           </button>
         </mat-menu>
       </h6>
@@ -50,7 +67,7 @@ class="container board-group drag-list d-flex flex-column flex-lg-row gap-2 flex
           Opa, não há nada aqui
         </span>
         <ng-container *ngFor="let task of board.tasks; let i = index">
-          <app-task-card [task]="task" [isLast]="i === board.tasks.length -1" (onChangesEvent)="changeTaskBoard()"></app-task-card>
+          <app-task-card [task]="task" [isLast]="i === board.tasks.length -1" (onChangesEvent)="updateBoards()"></app-task-card>
         </ng-container>
       </div>
     </div>
