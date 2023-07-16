@@ -1,0 +1,57 @@
+<div cdkDrag [class.border-bottom]="!isLast" class="card card-task rounded-0 shadow-sm border-0 drag-item p-0 shadow-none">
+
+  <div class="card-header border-0 d-flex align-items-center w-100 position-relative p-2 bg-transparent">
+    <div class="drag-handle" cdkDragHandle>
+      <mat-icon>drag_handle</mat-icon>
+    </div>
+    <div
+    style="height: 3rem;"
+    class="card-title m-0 flex-grow-1 ps-2 d-flex align-items-center">
+      <p style="text-overflow: ellipsis; white-space: nowrap;" class="text-capitalize m-0 fw-500 fs-regular flex-grow-1 overflow-hidden">
+        {{task?.title}}
+      </p>
+      <div class="btns d-flex gap-1">
+        <button mat-icon-button 
+        [class.d-none]="!task?.comments?.length"
+        [class]="'btn btn-comments btn-opt btn-outline-'+boardColor"
+        (click)="isCommentsCollapsed = !isCommentsCollapsed">
+          <mat-icon>message</mat-icon> 
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" 
+        [class]="'btn btn-opt btn-outline-'+boardColor">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="px-2 container-bg">
+          <button mat-menu-item class="border-bottom" (click)="editTask()">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item class="border-bottom" (click)="deleteTask()">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="boardsMenu">
+            <mat-icon>swap_horiz</mat-icon>
+            <span>Mover para</span>
+          </button>
+        </mat-menu>
+        <mat-menu #boardsMenu="matMenu" class="px-2 container-bg">
+          <button mat-menu-item *ngFor="let board of boards; let i = index" [class.border-bottom]="i !== boards.length -1" (click)="setBoard(board.id)">
+            <span>{{board.name}}</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="card-content" 
+  style="box-shadow: inset 0px 2px 5px -5px black;"
+  [collapse]="isCommentsCollapsed" [isAnimated]="true">
+    <div class="card-comments bg-body p-3 d-flex flex-column gap-3">
+      <p *ngFor="let comment of task?.comments; let i = index;" 
+      style="border-bottom: 1px solid rgba(var(--bs-container-color-rgb), .5);"
+      class="comment m-0 px-2">
+        {{comment}}
+      </p>
+    </div>
+  </div>
+</div>

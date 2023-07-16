@@ -2,14 +2,17 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { BoardManager } from '../../board-manager'
 import { Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AddTaskComponent } from 'src/app/features/tasks/components/add-task/add-task.component';
+import { AddTaskComponent } from 'src/app/features/tasks/dialogs/add-task/add-task.component';
 import { BoardsService } from '../../services/boards.service';
 import { AppOptions } from 'src/app/core/app-options';
 import { LoaderService } from '../../../../shared/components/loader/loader.service';
-import { AddBoardComponent } from '../add-board/add-board.component';
+import { AddBoardComponent } from '../../dialogs/add-board/add-board.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EditBoardComponent } from '../edit-board/edit-board.component';
-import { Board } from '../../models/board';
+import { EditBoardComponent } from '../../dialogs/edit-board/edit-board.component';
+import { Board, BoardViewModel } from '../../models/board';
+import { DefaultDialog } from 'src/app/shared/components/default-dialog/default-dialog.service';
+import { DefaultDialogService } from '../../../../shared/components/default-dialog/default-dialog.service';
+import { TaskService } from 'src/app/features/tasks/services/task.service';
 
 @Component({
   selector: 'app-board',
@@ -21,9 +24,15 @@ export class BoardComponent implements OnInit {
     return this.boardsService.getBoards();
   }
 
+  getOtherBoards(board: BoardViewModel) {
+    return this.boards.filter(p => p.id !== board.id);
+  }
+
   constructor(
     private boardsService: BoardsService,
+    private taskService: TaskService,
     public dialog: MatDialog,
+    public defaultDialogService: DefaultDialogService,
     public loaderService: LoaderService,
     private router: Router
   ) { }
@@ -57,8 +66,38 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  changeTaskBoard() {
+  moveTasksTo(boardOrigin: BoardViewModel, boardDestiny: BoardViewModel) {
+    const tasks = [...boardOrigin.tasks];
+    tasks.forEach(task => {
+      task.boardId = boardDestiny.id ?? task.boardId;
+    });
+
+    this.taskService.updateTasks(tasks)
     this.updateBoards();
+  }
+
+  deleteTasks(board: BoardViewModel) {
+    const dialog: DefaultDialog = {
+      title: 'Deletar Tarefas do Quadro',
+      contentHTML:
+        `<p class="mx-auto">
+        Tem certeza que deseja deletar <strong>TODAS</strong> as tarefas no quadro <strong>${board.name}</strong>?
+      </p>`,
+      confirmBtnColor: 'red',
+      confirmBtnText: 'Excluir'
+    };
+
+    const onConfirm = () => {
+      const tasks = [...board.tasks];
+      tasks.forEach(task => {
+        task.disabled = true;
+      });
+
+      this.taskService.updateTasks(tasks)
+      this.updateBoards();
+    };
+
+    this.defaultDialogService.openDialog(dialog, onConfirm);
   }
 
   updateBoards() {
@@ -83,8 +122,22 @@ export class BoardComponent implements OnInit {
   }
 
   deleteBoard(board: Board) {
-    board.disabled = true;
-    this.boardsService.editBoard(board, board.id?? '')
+    const dialog: DefaultDialog = {
+      title: 'Deletar Quadro',
+      contentHTML:
+        `<p class="mx-auto">
+        Tem certeza que deseja deletar o quadro <strong>${board.name}</strong> e todas as tarefas nele?
+      </p>`,
+      confirmBtnColor: 'red',
+      confirmBtnText: 'Excluir'
+    };
+
+    const onConfirm = () => {
+      board.disabled = true;
+      this.boardsService.editBoard(board, board.id ?? '')
+    };
+
+    this.defaultDialogService.openDialog(dialog, onConfirm);
   }
 
   isFlexRow(elementRef: HTMLElement) {

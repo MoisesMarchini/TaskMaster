@@ -1,0 +1,20 @@
+<h5 mat-dialog-title class="fs-2 fw-500 text-container-color">{{dialog?.title}}</h5>
+<mat-dialog-content>
+  <div style="max-width: 500px;" class="content" [innerHTML]="dialog?.contentHTML"></div>
+  <div class="dialog-actions d-flex flex-nowrap justify-content-end ms-auto gap-2 mt-3">
+    <button
+    type="button"
+    [mat-dialog-close]="false"
+    style="background-color: rgba(var(--bs-body-bg-rgb), .75); color: var(--bs-body-color);"
+    class="fw-500 px-4 rounded border-0">
+      Cancelar
+    </button>
+    <button
+    type="button"
+    [mat-dialog-close]="true"
+    [class]="'btn fw-500 px-4 rounded border-0 btn-'+dialog?.confirmBtnColor">
+      {{dialog?.confirmBtnText}}
+    </button>
+  </div>
+
+</mat-dialog-content>

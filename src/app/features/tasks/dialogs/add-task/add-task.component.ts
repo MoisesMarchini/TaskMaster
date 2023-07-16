@@ -4,13 +4,15 @@ import { BoardManager } from 'src/app/features/boards/board-manager';
 import { TaskService } from '../../services/task.service';
 import { NgForm } from '@angular/forms';
 import { BoardsService } from '../../../boards/services/boards.service';
+import { SharedFunctions } from '../shared-functions';
 
 @Component({
   selector: 'app-add-task',
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  templateUrl: '../tasks-dialog.component.html',
+  styleUrls: ['../tasks-dialog.component.css']
 })
 export class AddTaskComponent implements OnInit {
+  title = 'Nova Tarefa'
   task: Task = {
     title: '',
     index: -1,
@@ -30,8 +32,21 @@ export class AddTaskComponent implements OnInit {
     if(form.invalid)
       return;
 
-    this.taskService.newTask(this.task, BoardManager.boards[0].id ?? 'board-001');
+    SharedFunctions.clearEmptyComments(this.task);
+    this.taskService.newTask(this.task);
     this.boardsService.updateBoards();
+  }
+
+  addComment() {
+    SharedFunctions.addComment(this.task)
+  }
+
+  removeComment(index: number) {
+    SharedFunctions.removeComment(this.task, index)
+  }
+
+  getCommentsLength() {
+    return SharedFunctions.getCommentsLength(this.task);
   }
 
 }
