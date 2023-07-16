@@ -2,15 +2,43 @@
 <mat-dialog-content>
   <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)"
   class="d-flex flex-column text-container-color" style="max-width: 500px;" >
-    <mat-form-field class="mb-3">
-      <mat-label>Título</mat-label>
-      <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
-      <mat-error *ngIf="taskForm.invalid && !task.title">
-        Deve ser preenchido
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field class="mb-3">
 
-    <div class="form-actions d-flex flex-nowrap ms-auto gap-2">
+    <mat-label>Título</mat-label>
+    <input matInput placeholder="Ex.: Ir ao mercado" name="title" [(ngModel)]="task.title" required>
+    <mat-error *ngIf="taskForm.invalid && !task.title">
+      Deve ser preenchido
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-group mb-3 overflow-auto d-flex flex-column">
+    <span class="fs-3 ps-2 mb-3 d-flex align-items-center">
+      Comentários
+
+      <button
+      type="button"
+      (click)="addComment()"
+      style="width: 2rem; height: 2rem; place-content: center;"
+      class="btn btn-primary ms-auto d-grid rounded p-0 border-0">
+        <mat-icon>add</mat-icon>
+      </button>
+    </span>
+
+    <ng-container *ngFor="let index of getCommentsLength()" >
+      <div class="form-group-item mb-2 d-flex align-items-center">
+        <input class="me-2 rounded border py-1 px-2 flex-grow-1" placeholder="Ex.: Comprar maçã" [name]="'comment_'+index" [(ngModel)]="task.comments[index]">
+        <button
+        type="button"
+        (click)="removeComment(index)"
+        style="width: 2rem; height: 2rem; place-content: center;"
+        class="btn btn-red ms-auto d-grid rounded p-0 border-0">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+
+    <div class="form-actions d-flex flex-nowrap ms-auto mt-3 gap-2">
 
       <button
       type="button"

@@ -4,6 +4,7 @@ import { BoardManager } from 'src/app/features/boards/board-manager';
 import { TaskService } from '../../services/task.service';
 import { NgForm } from '@angular/forms';
 import { BoardsService } from '../../../boards/services/boards.service';
+import { SharedFunctions } from '../shared-functions';
 
 @Component({
   selector: 'app-add-task',
@@ -31,8 +32,21 @@ export class AddTaskComponent implements OnInit {
     if(form.invalid)
       return;
 
+    SharedFunctions.clearEmptyComments(this.task);
     this.taskService.newTask(this.task);
     this.boardsService.updateBoards();
+  }
+
+  addComment() {
+    SharedFunctions.addComment(this.task)
+  }
+
+  removeComment(index: number) {
+    SharedFunctions.removeComment(this.task, index)
+  }
+
+  getCommentsLength() {
+    return SharedFunctions.getCommentsLength(this.task);
   }
 
 }

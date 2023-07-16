@@ -4,6 +4,7 @@ import { TaskManager } from '../../task-manager';
 import { NgForm } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
 import { BoardsService } from '../../../boards/services/boards.service';
+import { SharedFunctions } from '../shared-functions';
 
 @Component({
   selector: 'app-edit-task',
@@ -37,8 +38,20 @@ export class EditTaskComponent implements OnInit {
     if(form.invalid)
       return;
 
+    SharedFunctions.clearEmptyComments(this.task);
     this.taskService.updateTask(this.task);
     this.boardsService.updateBoards();
   }
 
+  addComment() {
+    SharedFunctions.addComment(this.task)
+  }
+
+  removeComment(index: number) {
+    SharedFunctions.removeComment(this.task, index)
+  }
+
+  getCommentsLength() {
+    return SharedFunctions.getCommentsLength(this.task);
+  }
 }

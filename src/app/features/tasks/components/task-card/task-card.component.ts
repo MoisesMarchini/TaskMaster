@@ -16,6 +16,8 @@ export class TaskCardComponent implements OnInit {
   @Input() isLast: boolean = false;
   @Output() onChangesEvent = new EventEmitter();
 
+  isCommentsCollapsed = true;
+
   boards = BoardManager.boards.filter(board => board.id !== this.task?.boardId);
   boardColor = '';
 

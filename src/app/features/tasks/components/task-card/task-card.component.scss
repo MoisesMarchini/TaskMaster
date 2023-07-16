@@ -2,7 +2,7 @@
   min-height: 64px;
 }
 
-.card-task::before{
+.card-task .card-header::before{
   content: '';
   position: absolute;
   left: 0;
@@ -13,6 +13,24 @@
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   background-color: rgb(var(--_column-color-rgb));
+}
+
+.btn-comments {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--_column-color);
+    color: var(--bs-container-bg);
+    width: 12px;
+    height: 12px;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    outline: 2px solid;
+  }
 }
 
 .drag-handle {
